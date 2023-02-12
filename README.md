@@ -41,6 +41,16 @@ As as an authenticated USER, I can logout, and see my information no longer view
 
 
 
+WireFrame Sketch for Potential Passport JS Implementation Stretch Goal
+![WireFrame Diagram for PAssport JS Stretch Goal](./Wireframes%20Website%20Sketch.png)
+
+
+
+
+
+
+
+
 
 
 
