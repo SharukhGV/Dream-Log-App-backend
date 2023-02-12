@@ -1,15 +1,15 @@
-const { Client } = require("pg");
+// const { Client } = require("pg");
 
-const { user, host, database, password, port } = require("./dbConfig");
+// const { user, host, database, password, port } = require("./dbConfig");
  
-const client = new Client({
-  user,
-  host,
-  database,
-  password,
-  port,
-});
+// const client = new Client({
+//   user,
+//   host,
+//   database,
+//   password,
+//   port,
+// });
  
-client.connect();
+// client.connect();
 
-module.exports = client;
+// module.exports = client;
