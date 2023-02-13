@@ -16,7 +16,7 @@ CREATE TABLE dreams (
     good_dream BOOLEAN, 
     dream_description TEXT,
     topic TEXT NOT NULL, 
-    date DATE NOT NULL,
+    date date NOT NULL,
     night BOOLEAN NOT NULL,
     user_id INT,
     FOREIGN KEY (user_id) REFERENCES users(id)

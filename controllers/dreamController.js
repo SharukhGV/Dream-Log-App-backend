@@ -31,7 +31,9 @@ dreams.get("/:id", async (req, res) => {
 
 dreams.put("/:id", async (req, res) => {
   try {
-    const id = req.params.id;
+    const id = req.params.id;    
+    const dream = req.body;
+
     const updatedDream = await updateOneDream(id, dream);
     res.json(updatedDream);
   } catch (error) {
@@ -53,12 +55,17 @@ dreams.delete("/:id", async (req, res) => {
 
 dreams.post("/", async (req, res) => {
   try {
+    const { dream } = req.body;
+
     const createdDream = await createDream(dream);
     res.json(createdDream);
-  } catch (error) {
+} catch (error) {
     console.log(error);
-    res.status(400).json({ error: `Incorrect post body: ${req.body}` });
-  }
+    console.log("Incoming request body:", req.body);
+    // res.status(400).json({ error: "Incorrect post body" });
+    res.status(400).json({ error: "Incorrect post body" });
+
+}
 });
 
 module.exports = dreams;
