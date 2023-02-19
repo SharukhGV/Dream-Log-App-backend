@@ -4,22 +4,22 @@ CREATE DATABASE dream_log_database;
 \c dream_log_database; 
 
 -- PASSPORT JS USER:: NOTE: IN FRONTEND: THE VALUE OF INPUT FILED SHOULD BE EMAIL FOR USERNAME IF LABEL IS CALLED USERNAME FOR USER FIELD
-CREATE TABLE users (
- id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
- email CHAR(128),
- password CHAR(60)
-);
+-- CREATE TABLE users (
+--  id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+--  email CHAR(128),
+--  password CHAR(60)
+-- );
 
 CREATE TABLE dreams (
     id INT GENERATED always AS IDENTITY PRIMARY KEY,
     name TEXT NOT NULL,
-    good_dream BOOLEAN, 
+    good_dream TEXT, 
     dream_description TEXT,
     topic TEXT NOT NULL, 
     date date NOT NULL,
-    night BOOLEAN NOT NULL,
-    user_id INT,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    night BOOLEAN NOT NULL
+    -- user_id INT,
+    -- FOREIGN KEY (user_id) REFERENCES users(id)
     
 );
 
