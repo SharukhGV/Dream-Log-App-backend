@@ -9,9 +9,9 @@ CREATE DATABASE dream_log_database;
 --  email CHAR(128),
 --  password CHAR(60)
 -- );
-
+DROP TABLE dreams;
 CREATE TABLE dreams (
-    id INT GENERATED always AS IDENTITY PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
     good_dream TEXT, 
     dream_description TEXT,
