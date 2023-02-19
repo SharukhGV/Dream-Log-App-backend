@@ -17,10 +17,7 @@ CREATE TABLE dreams (
     dream_description TEXT,
     topic TEXT NOT NULL, 
     date date NOT NULL,
-    night BOOLEAN NOT NULL
-    -- user_id INT,
-    -- FOREIGN KEY (user_id) REFERENCES users(id)
-    
+    night BOOLEAN NOT NULL  
 );
 
 -- command to initialize schema file

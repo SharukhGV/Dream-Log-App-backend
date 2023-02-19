@@ -30,7 +30,7 @@ const cn = DATABASE_URL
       database: PG_DATABASE,
       user: PG_USER,
     };
-
+console.log(cn)
 
 
 const db = pgp(cn);
