@@ -28,8 +28,9 @@ const deleteDream = async (id) =>
 
   const createDream = async (dream) =>
   await db.one(
-    "INSERT INTO dreams (name, good_dream, dream_description, topic, date, night) VALUES($1, $2, $3, $4, $5, $6) RETURNING *",
+    "INSERT INTO dreams (user_id, name, good_dream, dream_description, topic, date, night) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
     [
+      user_id.getToken(),
       dream.name,
       dream.good_dream,
       dream.dream_description,
