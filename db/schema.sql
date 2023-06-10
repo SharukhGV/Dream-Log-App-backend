@@ -4,20 +4,17 @@ CREATE DATABASE dream_log_database;
 \c dream_log_database; 
 
 -- PASSPORT JS USER:: NOTE: IN FRONTEND: THE VALUE OF INPUT FILED SHOULD BE EMAIL FOR USERNAME IF LABEL IS CALLED USERNAME FOR USER FIELD
--- CREATE TABLE users (
---  id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
---  email CHAR(128),
---  password CHAR(60)
--- );
 DROP TABLE dreams;
 CREATE TABLE dreams (
-    id SERIAL PRIMARY KEY,
-    name TEXT NOT NULL,
-    good_dream TEXT, 
-    dream_description TEXT,
-    topic TEXT NOT NULL, 
-    date date NOT NULL,
-    night BOOLEAN NOT NULL  
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER NOT NULL,
+  name TEXT NOT NULL,
+  good_dream TEXT,
+  dream_description TEXT,
+  topic TEXT NOT NULL,
+  date DATE NOT NULL,
+  night BOOLEAN NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
 -- command to initialize schema file
