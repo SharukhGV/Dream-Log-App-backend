@@ -1,4 +1,11 @@
 const db = require("../db/dbConfig.js");
+const admin = require('firebase-admin');
+
+// Initialize the Firebase Admin SDK
+admin.initializeApp({
+  credential: admin.credential.applicationDefault(),
+  // Add other necessary configurations
+});
 
 const getAllDreams = async () => await db.any("SELECT * FROM dreams");
 
@@ -25,22 +32,49 @@ const updateOneDream = async (id, dream) => {
 
 const deleteDream = async (id) =>
   await db.one("DELETE FROM dreams WHERE id = $1 RETURNING *", id);
+  
 
-  const createDream = async (dream) =>
-  await db.one(
-    "INSERT INTO dreams (user_id, name, good_dream, dream_description, topic, date, night) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
-    [
-      user_id.getToken(),
-      dream.name,
-      dream.good_dream,
-      dream.dream_description,
-      dream.topic,
-      dream.date,
-      dream.night,
+  // const createDream = async (dream) => {
+  //     // Retrieve the user ID token
+  // const userToken = await admin.auth().verifyIdToken(dream.user_id);
+  // const userId = userToken.uid;
+  
+  // await db.one(
+  //   "INSERT INTO dreams (user_id, name, good_dream, dream_description, topic, date, night) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
+  //   [
+  //     user_id.getToken(),
+  //     dream.name,
+  //     dream.good_dream,
+  //     dream.dream_description,
+  //     dream.topic,
+  //     dream.date,
+  //     dream.night,
       
-    ]
-  );
+  //   ]
+  // );
+  // }
 
+  const createDream = async (dream) => {
+    // Retrieve the user ID token
+    const userToken = await admin.auth().verifyIdToken(dream.user_id);
+    const userId = userToken.uid;
+  
+    // Insert data into the database
+    const insertedDream = await db.one(
+      "INSERT INTO dreams (user_id, name, good_dream, dream_description, topic, date, night) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
+      [
+        userId,
+        dream.name,
+        dream.good_dream,
+        dream.dream_description,
+        dream.topic,
+        dream.date,
+        dream.night,
+      ]
+    );
+  
+    return insertedDream;
+  }
 
 
   // const createDream = async (dream) =>
