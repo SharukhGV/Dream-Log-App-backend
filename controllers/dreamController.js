@@ -11,7 +11,6 @@
 // // const checkDream = require("../utils/dateFormatter");
 // // const formatDateArray = require("../utils/dateFormatter");
 
-
 const express = require("express");
 const dreams = express.Router();
 const {
@@ -21,6 +20,31 @@ const {
     deleteDream,
     createDream,
 } = require("../queries/dreams");
+
+// require('dotenv').config()
+
+// const config ={
+//   CLIENT_ID: process.env.CLIENT_ID,
+// CLIENT_SECRET: process.env.CLIENT_SECRET}
+
+
+// function checkLoggedIn((req,res,next))=>{
+//   const isLoggIn = true
+//   if(!isLoggIn){
+//     return res.status(401).json({error: 'you must log in'})
+//   }
+//     next();
+//   }
+
+//   dreams.get('auth/google',(req,res)=>{})
+//   dreams.get('auth/google/callback',(req,res)=>{})
+//   dreams.get('auth/logout',(req,res)=>{})
+
+
+// dreams.get('secret',checkLoggedIn,(req,res)){
+//   return res.send('success')
+// }
+
 
 dreams.get("/", async (req, res) => {
   try {
