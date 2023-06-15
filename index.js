@@ -7,7 +7,7 @@ app.use(express.json());
 const cors = require("cors");
 
 // app.use(cors());
-this.app.use(cors({
+app.use(cors({
   origin:"https://dreamjournal.bio"
 }))
 
