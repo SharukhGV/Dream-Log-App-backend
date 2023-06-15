@@ -1,15 +1,25 @@
 // normally called app.js, etc. I decided to keep default, index.js
 
 const express = require("express");
+const cors = require("cors");
+
 const app = express();
 
 app.use(express.json());
-const cors = require("cors");
 
 // app.use(cors());
-app.use(cors({
-  origin:"https://dreamjournal.bio"
-}))
+
+var corsOptions = {
+  origin: 'https://dreamjournal.bio',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
+app.get('/dreams', cors(corsOptions), function (req, res, next) {
+  res.json({msg: 'This is CORS-enabled for a Single Route'})
+})
+app.get('/dreams/:id', cors(corsOptions), function (req, res, next) {
+  res.json({msg: 'This is CORS-enabled for a Single Route'})
+})
 
 // app.use(express.urlencoded({ extended: true }));
 
