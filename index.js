@@ -1,26 +1,16 @@
 // normally called app.js, etc. I decided to keep default, index.js
 
-var express = require("express");
-var cors = require('cors');
-
-var app = express();
+const express = require("express");
+const app = express();
 
 app.use(express.json());
-app.use(cors());
+var cors = require("cors");
 
-var corsOptions = {
-  origin: 'https://main--chic-kitsune-7beb31.netlify.app',
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
-
-app.get('/dreams', cors(corsOptions), function (req, res, next) {
-  res.json({msg: 'This is CORS-enabled for a Single Route'})
-})
-app.get('/dreams/:id', cors(corsOptions), function (req, res, next) {
-  res.json({msg: 'This is CORS-enabled for a Single Route'})
-})
+// app.use(cors());
 
 // app.use(express.urlencoded({ extended: true }));
+
+app.use(cors({ origin: ['https://dreamjournal.bio', 'https://main--chic-kitsune-7beb31.netlify.app'], credentials: true }))
 
 
 let dreamController = require("./controllers/dreamController");
