@@ -1,5 +1,8 @@
 const db = require("../db/dbConfig.js");
 const admin = require('firebase-admin');
+// const pgp = require('pg-promise')();
+// const connectionString = process.env.DATABASE_URL;
+// const db = pgp(connectionString);
 
 // Initialize the Firebase Admin SDK
 admin.initializeApp({

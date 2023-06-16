@@ -1,16 +1,15 @@
 // normally called app.js, etc. I decided to keep default, index.js
 
-const express = require("express");
-const cors = require("cors");
+var express = require("express");
+var cors = require('cors');
 
-const app = express();
+var app = express();
 
 app.use(express.json());
-
-// app.use(cors());
+app.use(cors());
 
 var corsOptions = {
-  origin: 'https://dreamjournal.bio',
+  origin: 'https://main--chic-kitsune-7beb31.netlify.app',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
