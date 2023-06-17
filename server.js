@@ -7,6 +7,11 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+     next();
+});
+
 require("dotenv").config();
 const PORT = process.env.PORT;
 
