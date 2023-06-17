@@ -2,6 +2,11 @@
 // require("./db/passportConfig")(passport);
 const app = require("./index.js");
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
+
 require("dotenv").config();
 const PORT = process.env.PORT;
 
