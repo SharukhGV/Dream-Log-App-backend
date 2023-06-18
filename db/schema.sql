@@ -7,14 +7,13 @@ CREATE DATABASE dream_log_database;
 DROP TABLE dreams;
 CREATE TABLE dreams (
   id SERIAL PRIMARY KEY,
-  user_id INTEGER NOT NULL,
+  user_id TEXT NOT NULL,
   name TEXT NOT NULL,
   good_dream TEXT,
   dream_description TEXT,
   topic TEXT NOT NULL,
   date DATE NOT NULL,
   night BOOLEAN NOT NULL,
-  FOREIGN KEY (user_id) REFERENCES users (uid)
 );
 
 -- command to initialize schema file
