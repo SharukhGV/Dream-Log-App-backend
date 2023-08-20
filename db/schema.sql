@@ -7,7 +7,6 @@ CREATE DATABASE dream_log_database;
 DROP TABLE dreams;
 CREATE TABLE dreams (
   id SERIAL PRIMARY KEY,
-  user_id TEXT NOT NULL,
   name TEXT NOT NULL,
   good_dream TEXT,
   dream_description TEXT,
