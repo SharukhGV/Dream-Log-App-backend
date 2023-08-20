@@ -52,9 +52,13 @@ const checkJwt = auth({
   issuerBaseURL: `https://dev-xz06mncmhh2gwqjf.us.auth0.com`,
 });
 
-// const checkScopes = requiredScopes('read:messages');
+const checkScopes = requiredScopes('read:dreams');
+const checkScopescreate = requiredScopes('create:dreams');
+const checkScopeupdate = requiredScopes('update:dreams');
+const checkScopedelete = requiredScopes('delete:dreams');
 
-dreams.get("/", checkJwt, async (req, res) => {
+
+dreams.get("/", checkJwt, checkScopes, async (req, res) => {
   try {
     const dreams = await getAllDreams();
     res.json(dreams);
@@ -64,7 +68,7 @@ dreams.get("/", checkJwt, async (req, res) => {
   }
 });
 
-dreams.get("/:id",checkJwt, async (req, res) => {
+dreams.get("/:id", checkJwt, checkScopes, async (req, res) => {
   try {
     const { id } = req.params;
     const dream = await getOneDream(id);
@@ -75,7 +79,7 @@ dreams.get("/:id",checkJwt, async (req, res) => {
   }
 });
 
-dreams.put("/:id", checkJwt,  async (req, res) => {
+dreams.put("/:id", checkJwt, checkScopeupdate,  async (req, res) => {
   try {
     const { id } = req.params;
     const dream = req.body;
@@ -88,7 +92,7 @@ dreams.put("/:id", checkJwt,  async (req, res) => {
   }
 });
 
-dreams.delete("/:id", checkJwt,  async (req, res) => {
+dreams.delete("/:id", checkJwt, checkScopedelete,  async (req, res) => {
   try {
     const { id } = req.params;
     const deletedDream = await deleteDream(id);
@@ -99,7 +103,7 @@ dreams.delete("/:id", checkJwt,  async (req, res) => {
   }
 });
 
-dreams.post("/", checkJwt, async (req, res) => {
+dreams.post("/", checkJwt, checkScopescreate, async (req, res) => {
   try {
     const dream = req.body;
 
