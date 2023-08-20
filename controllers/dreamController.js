@@ -45,8 +45,16 @@ const {
 //   return res.send('success')
 // }
 
+const { auth, requiredScopes } = require('express-oauth2-jwt-bearer');
 
-dreams.get("/", async (req, res) => {
+const checkJwt = auth({
+  audience: 'cNTkBaEqR4hmAsZJ1o1PkcCWTFBtQ8vG',
+  issuerBaseURL: `https://dev-xz06mncmhh2gwqjf.us.auth0.com`,
+});
+
+// const checkScopes = requiredScopes('read:messages');
+
+dreams.get("/", checkJwt, async (req, res) => {
   try {
     const dreams = await getAllDreams();
     res.json(dreams);
@@ -56,7 +64,7 @@ dreams.get("/", async (req, res) => {
   }
 });
 
-dreams.get("/:id", async (req, res) => {
+dreams.get("/:id",checkJwt, async (req, res) => {
   try {
     const { id } = req.params;
     const dream = await getOneDream(id);
@@ -67,7 +75,7 @@ dreams.get("/:id", async (req, res) => {
   }
 });
 
-dreams.put("/:id", async (req, res) => {
+dreams.put("/:id", checkJwt,  async (req, res) => {
   try {
     const { id } = req.params;
     const dream = req.body;
@@ -80,7 +88,7 @@ dreams.put("/:id", async (req, res) => {
   }
 });
 
-dreams.delete("/:id", async (req, res) => {
+dreams.delete("/:id", checkJwt,  async (req, res) => {
   try {
     const { id } = req.params;
     const deletedDream = await deleteDream(id);
@@ -91,7 +99,7 @@ dreams.delete("/:id", async (req, res) => {
   }
 });
 
-dreams.post("/", async (req, res) => {
+dreams.post("/", checkJwt, async (req, res) => {
   try {
     const dream = req.body;
 
