@@ -10,7 +10,7 @@ var cors = require("cors");
 
 // app.use(express.urlencoded({ extended: true }));
 
-app.use(cors({ origin: ['https://chic-kitsune-7beb31.netlify.app/'], credentials: true }))
+app.use(cors())
 
 
 let dreamController = require("./controllers/dreamController");
