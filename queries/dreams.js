@@ -1,4 +1,4 @@
-const client = require("../db/dbConfig.js");
+const db = require("../db/dbConfig.js");
 // const admin = require('firebase-admin');
 // const pgp = require('pg-promise')();
 // const connectionString = process.env.DATABASE_URL;
@@ -10,10 +10,10 @@ const client = require("../db/dbConfig.js");
 //   // Add other necessary configurations
 // });
 
-const getAllDreams = async () => await client.any("SELECT * FROM dreams");
+const getAllDreams = async () => await db.any("SELECT * FROM dreams");
 
 const getOneDream = async (id) =>
-  await client.one("SELECT * FROM dreams WHERE id=$1", id);
+  await db.one("SELECT * FROM dreams WHERE id=$1", id);
 
 // const updateOneDream = async (id, dream) => {
 //   const { name, good_dream, dream_description, topic, date, night, user_id} = dream;
@@ -27,14 +27,14 @@ const getOneDream = async (id) =>
 const updateOneDream = async (id, dream) => {
   const { user_id, name, good_dream, dream_description, topic, date, night} = dream;
 
-  return await client.one(
+  return await db.one(
     "UPDATE dreams SET user_id=$1, name=$2, good_dream=$3, dream_description=$4, topic=$5, date=$6, night=$7 WHERE id=$8 RETURNING *",
     [user_id, name, good_dream, dream_description, topic, date, night, id]
   );
 };
 
 const deleteDream = async (id) =>
-  await client.one("DELETE FROM dreams WHERE id = $1 RETURNING *", id);
+  await db.one("DELETE FROM dreams WHERE id = $1 RETURNING *", id);
   
 
   // const createDream = async (dream) => {
@@ -63,7 +63,7 @@ const deleteDream = async (id) =>
     // const userId = userToken.uid;
   
     // Insert data into the database
-    const insertedDream = await client.one(
+    const insertedDream = await db.one(
       "INSERT INTO dreams (user_id, name, good_dream, dream_description, topic, date, night) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
       [
         dream.user_id,
