@@ -3,10 +3,7 @@
 const app = require("./index.js");
 // const { auth, requiredScopes } = require('express-oauth2-jwt-bearer');
 
-// app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   next();
-// });
+
 
 
 const { auth } = require('express-openid-connect');
@@ -21,6 +18,12 @@ const config = {
 };
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
+// app.use(auth(config));
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
+
 app.use(auth(config));
 
 // req.isAuthenticated is provided from the auth router
